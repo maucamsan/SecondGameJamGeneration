@@ -8,7 +8,10 @@ public enum CanvasType
     MainMenu,
     GameUI,
     EndScreen,
-    VictoryScreen
+    VictoryScreen, 
+    Credits, 
+    PauseScreen,
+    Options
 }
 
 public class CanvasManager : Singleton<CanvasManager>

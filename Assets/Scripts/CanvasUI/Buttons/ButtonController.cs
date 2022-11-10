@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public enum ButtonType
 {
+    MainMenu,
     StartGame,
     Restart,
     Credits,
@@ -32,29 +33,32 @@ public class ButtonController : MonoBehaviour
     {
         switch(buttonType)
         {
+            case ButtonType.MainMenu:
+                canvasManager.SwitchCanvas(CanvasType.MainMenu);
+                break;
             case ButtonType.StartGame:
                 // Load Scene, call game manager
                 canvasManager.SwitchCanvas(CanvasType.GameUI);
                 break;
             case ButtonType.Credits:
                 // Load Scene, call game manager
-                canvasManager.SwitchCanvas(CanvasType.GameUI);
+                canvasManager.SwitchCanvas(CanvasType.Credits);
                 break;
             case ButtonType.Pause:
                 // Load Scene, call game manager
-                canvasManager.SwitchCanvas(CanvasType.GameUI);
+                canvasManager.SwitchCanvas(CanvasType.PauseScreen);
                 break;
             case ButtonType.Restart:
-                // Load Scene, call game manager
+                // Restart Game, call game manager
                 canvasManager.SwitchCanvas(CanvasType.GameUI);
                 break;
             case ButtonType.Resume:
-                // Load Scene, call game manager
+                // Set time to 1
                 canvasManager.SwitchCanvas(CanvasType.GameUI);
                 break;
             case ButtonType.Options:
                 // Load Scene, call game manager
-                canvasManager.SwitchCanvas(CanvasType.GameUI);
+                canvasManager.SwitchCanvas(CanvasType.Options);
                 break;
             default:
                 break;
