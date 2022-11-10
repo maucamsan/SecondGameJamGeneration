@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 240223936}
+  - component: {fileID: 240223937}
   m_Layer: 5
   m_Name: EndScreen
   m_TagString: Untagged
@@ -159,6 +160,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: -1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &240223937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240223935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb8c9219e0e85340ae18000864e7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasType: 2
 --- !u!1 &309653007
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309653008}
+  - component: {fileID: 309653009}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -195,6 +210,19 @@ RectTransform:
   m_AnchoredPosition: {x: -0.5, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &309653009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309653007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb8c9219e0e85340ae18000864e7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasType: 1
 --- !u!1 &351151214
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 978969256}
+  - component: {fileID: 978969257}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -383,6 +412,19 @@ RectTransform:
   m_AnchoredPosition: {x: -0.5, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &978969257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978969255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb8c9219e0e85340ae18000864e7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasType: 3
 --- !u!1 &1213678781
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +565,7 @@ GameObject:
   - component: {fileID: 1353153636}
   - component: {fileID: 1353153635}
   - component: {fileID: 1353153634}
+  - component: {fileID: 1353153638}
   m_Layer: 5
   m_Name: CanvasManager
   m_TagString: Untagged
@@ -615,6 +658,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1353153638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353153633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2163eaf267a30074c86d9b350ce46fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1524789968 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1133906301266396220, guid: 30206e360835fde459f2fddf3a7b4f53, type: 3}
@@ -719,6 +774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2036059221}
+  - component: {fileID: 2036059222}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -746,6 +802,19 @@ RectTransform:
   m_AnchoredPosition: {x: -0.5, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2036059222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036059220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb8c9219e0e85340ae18000864e7dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasType: 0
 --- !u!1001 &1133906300022683372
 PrefabInstance:
   m_ObjectHideFlags: 0
