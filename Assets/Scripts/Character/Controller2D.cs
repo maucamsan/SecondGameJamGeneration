@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Linq;
-
+using UnityEngine.Rendering.Universal;
 public class Controller2D : MonoBehaviour
 {
     
@@ -23,10 +23,12 @@ public class Controller2D : MonoBehaviour
     Vector2 movement;
     float horizontalInput;
     float verticalInput;
+    Light2D ownLight;
 
     // Get animation reference
     void Awake()
     {
+        ownLight = GetComponentInChildren<Light2D>();
         rb2D = GetComponent<Rigidbody2D>();
         detectionRadius = standardDetectionRadius;
     }
@@ -46,17 +48,19 @@ public class Controller2D : MonoBehaviour
             moveX = -1f;
         if (Input.GetKey(KeyCode.D))
             moveX = 1f;
-        movement = new Vector2(moveX, moveY).normalized;
+        movement = new Vector2(moveX,moveY).normalized;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             detectionRadius = stealthDetectionRadius;
             movementSpeed = stealthMovementSpeed;
+            ownLight.pointLightOuterRadius = stealthDetectionRadius;
         }
         else
         {
             detectionRadius = standardDetectionRadius;
             movementSpeed = standardMovementSpeed;
+            ownLight.pointLightOuterRadius = standardDetectionRadius;
         }
 
         if (Input.GetKeyDown(KeyCode.E))

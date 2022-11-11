@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour
     }
     void HandleColorBar()
     {
-        Debug.Log(hungerMeter.value);
+        
         float t = Mathf.InverseLerp(20f, 50f, hungerMeter.value);
         imageFiller.color = Color.Lerp(hungryColor, fullColor, t);
     }
