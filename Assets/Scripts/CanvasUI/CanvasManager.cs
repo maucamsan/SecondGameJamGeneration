@@ -5,6 +5,7 @@ using System.Linq;
 
 public enum CanvasType
 {
+    Pregame,
     MainMenu,
     GameUI,
     EndScreen,
@@ -24,7 +25,7 @@ public class CanvasManager : Singleton<CanvasManager>
         //base.Awake();
         canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
-        SwitchCanvas(CanvasType.MainMenu);
+        SwitchCanvas(CanvasType.Pregame);
     }
 
     public void SwitchCanvas(CanvasType type)
