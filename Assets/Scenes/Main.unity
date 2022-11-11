@@ -446,6 +446,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4580139593162347570, guid: 5c1ca984121ae554d804a602fe22e2d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580139593162347570, guid: 5c1ca984121ae554d804a602fe22e2d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580139593162347570, guid: 5c1ca984121ae554d804a602fe22e2d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c1ca984121ae554d804a602fe22e2d5, type: 3}
 --- !u!1 &1213678781
@@ -614,7 +626,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933066225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1933066227
 Camera:
   m_ObjectHideFlags: 0

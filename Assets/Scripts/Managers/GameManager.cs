@@ -19,15 +19,9 @@ public class GameManager : Singleton<GameManager>
     GameState currentGameState = GameState.Pregame;
     void Start()
     {
-        canvasManager = CanvasManager.GetInstance();
         UpdateState(currentGameState);
-        ButtonController.OnGameStateChanged += UpdateState;
     }
     
-    void OnDisable()
-    {
-        ButtonController.OnGameStateChanged -= UpdateState;
-    }
     void UpdateState(GameState state)
     {
         switch(currentGameState)
@@ -49,25 +43,19 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log("My current state is main menu");
                 // Don't let player move
                 // Set music accorgingly
-                //canvasManager.SwitchCanvas(CanvasType.MainMenu);
-                //
                 StartGame();
                 UnPauseGame();
                 InventoryReset();
                 break;
             case GameState.GamePlay:
-                //canvasManager.SwitchCanvas(CanvasType.GameUI);
                 UnPauseGame();
                 // Set gameplay music
                 // Allow player and game mechanics
                 break;
             case GameState.Paused:
-                // Stop time
-                //canvasManager.SwitchCanvas(CanvasType.PauseScreen);
                 PauseGame();
                 break;
             case GameState.Victory:
-                //canvasManager.SwitchCanvas(CanvasType.VictoryScreen);
                 InventoryReset();
                 PauseGame();
                 // send to main menu
@@ -92,8 +80,11 @@ public class GameManager : Singleton<GameManager>
     public GameState CurrentGamestate
     {
         get {return currentGameState;}
-        set{currentGameState = value;
-            UpdateState(currentGameState);}
+        set
+        {
+            currentGameState = value;
+            UpdateState(currentGameState);
+        }
     }
     public void StartGame()
     {

@@ -3002,6 +3002,8 @@ GameObject:
   - component: {fileID: 6920376542615334793}
   - component: {fileID: 6920376542615334792}
   - component: {fileID: 6920376542615334807}
+  - component: {fileID: 2778862977837116768}
+  - component: {fileID: 8133902226531078553}
   m_Layer: 5
   m_Name: HungerBar
   m_TagString: Untagged
@@ -3097,6 +3099,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hunger: 100
   imageFiller: {fileID: 6920376543285230195}
+--- !u!114 &2778862977837116768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920376542615334794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf03c62f9313ce40a8fe87fbaf5edcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 100
+  maximoVida: 100
+  bar: {fileID: 8133902226531078553}
+--- !u!114 &8133902226531078553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920376542615334794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13ea8828e0e4aa4494933bf34e805f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6920376542840848152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,7 +3249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.5, y: 0.000000117113814}
+  m_AnchoredPosition: {x: -0.5, y: 0}
   m_SizeDelta: {x: 0, y: -0.00000023422763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6920376543040247734
