@@ -19,6 +19,8 @@ public class CanvasManager : Singleton<CanvasManager>
 {
     private List<CanvasController> canvasControllerList;
     CanvasController lastActiveCanvas;
+    [SerializeField] GameObject[] tutorial = new GameObject[2];
+    Animator animator;
 
     protected override void Awake()
     {
@@ -42,5 +44,11 @@ public class CanvasManager : Singleton<CanvasManager>
         }
         else
             Debug.LogWarning("The main menu canvas was not found!");
+    }
+
+    private void FadeOut(int index)
+    {
+        animator = tutorial[index].GetComponent<Animator>();
+        animator.SetTrigger("FadeOut");
     }
 }

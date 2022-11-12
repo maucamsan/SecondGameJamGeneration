@@ -24,6 +24,14 @@ public class Controller2D : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     Light2D ownLight;
+    Animator animator;
+    bool firstMovement;
+    bool canMove = true;
+    public bool CanMove
+    {
+        get{return canMove;}
+        set {canMove = value;}
+    }
 
     // Get animation reference
     void Awake()
@@ -31,23 +39,24 @@ public class Controller2D : MonoBehaviour
         ownLight = GetComponentInChildren<Light2D>();
         rb2D = GetComponent<Rigidbody2D>();
         detectionRadius = standardDetectionRadius;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // horizontalInput = Input.GetAxis("Horizontal");
-        // verticalInput = Input.GetAxis("Vertical");
-        // movement = new Vector2(horizontalInput, verticalInput).normalized;
+        if (!canMove) return;
+
         float moveX = 0;
         float moveY = 0;
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             moveY = 1f;
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             moveY = -1f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow))
             moveX = -1f;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow))
             moveX = 1f;
+
         movement = new Vector2(moveX,moveY).normalized;
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -62,12 +71,13 @@ public class Controller2D : MonoBehaviour
             movementSpeed = standardMovementSpeed;
             ownLight.pointLightOuterRadius = standardDetectionRadius;
         }
-
+        animator.SetFloat("MoveY", moveY);
+        animator.SetFloat("MoveX", moveX);
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Attack or harvest
         }
-        // Set animation according to movement
+        
     }
 
     void FixedUpdate()

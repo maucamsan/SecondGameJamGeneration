@@ -16,6 +16,11 @@ public class Hunger : MonoBehaviour
         bar.InicializarBarraVida(vida);
     }
  
+    [ContextMenu("TakeDamage")]
+    public void TakeDamage()
+    {
+        TomaeDaño(5);
+    }
     public void TomaeDaño(float daño)
     {
         vida -= daño;
