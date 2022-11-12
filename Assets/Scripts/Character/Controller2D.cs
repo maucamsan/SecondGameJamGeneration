@@ -24,6 +24,7 @@ public class Controller2D : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     Light2D ownLight;
+    Animator animator;
 
     // Get animation reference
     void Awake()
@@ -31,6 +32,7 @@ public class Controller2D : MonoBehaviour
         ownLight = GetComponentInChildren<Light2D>();
         rb2D = GetComponent<Rigidbody2D>();
         detectionRadius = standardDetectionRadius;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -41,13 +43,25 @@ public class Controller2D : MonoBehaviour
         float moveX = 0;
         float moveY = 0;
         if (Input.GetKey(KeyCode.W))
+        {
             moveY = 1f;
+            
+        }
         if (Input.GetKey(KeyCode.S))
+        {
             moveY = -1f;
+
+        }
         if (Input.GetKey(KeyCode.A))
+        {
             moveX = -1f;
+
+        }
         if (Input.GetKey(KeyCode.D))
+        {
             moveX = 1f;
+
+        }
         movement = new Vector2(moveX,moveY).normalized;
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -62,7 +76,8 @@ public class Controller2D : MonoBehaviour
             movementSpeed = standardMovementSpeed;
             ownLight.pointLightOuterRadius = standardDetectionRadius;
         }
-
+        animator.SetFloat("MoveY", moveY);
+        animator.SetFloat("MoveX", moveX);
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Attack or harvest
