@@ -27,12 +27,9 @@ public class GameManager : Singleton<GameManager>
         switch(currentGameState)
         {
             case GameState.Pregame:
-                // LoadLevel("Boot");
-                
                 try
                 {
                     UnloadLevel("Main");
-                    //LoadLevel("Boot");
                 }
                 catch (ArgumentException)
                 {
@@ -45,7 +42,7 @@ public class GameManager : Singleton<GameManager>
                 // Set music accorgingly
                 StartGame();
                 UnPauseGame();
-                InventoryReset();
+                ResetGame();
                 break;
             case GameState.GamePlay:
                 UnPauseGame();
@@ -56,16 +53,18 @@ public class GameManager : Singleton<GameManager>
                 PauseGame();
                 break;
             case GameState.Victory:
-                InventoryReset();
+                ResetGame();
                 PauseGame();
+                canvasManager.SwitchCanvas(CanvasType.VictoryScreen);
                 // send to main menu
                 break;
             case GameState.GameOver:
                 //canvasManager.SwitchCanvas(CanvasType.EndScreen);
-                InventoryReset();
+                ResetGame();
                 PauseGame();
                 // Let restart
                 // Let send to main menu
+                canvasManager.SwitchCanvas(CanvasType.EndScreen);
                 break;
             case GameState.Restart:
                 UnloadLevel("Main");
@@ -91,9 +90,13 @@ public class GameManager : Singleton<GameManager>
         LoadLevel("Main");
     }
 
-    void InventoryReset()
+    void ResetGame()
     {
         // Reset inventory
+        // Reset hunger bar
+        // Place player in initial position
+        // Reset lootables
+        // Reset enemies
     }
     void PauseGame()
     {

@@ -12,7 +12,8 @@ public enum ButtonType
     Credits,
     Pause,
     Resume,
-    Options
+    Options,
+    PregameCreds
 }
 
 [RequireComponent(typeof(Button))] 
@@ -63,6 +64,9 @@ public class ButtonController : MonoBehaviour
                 break;
             case ButtonType.Options:
                 canvasManager.SwitchCanvas(CanvasType.Options);
+                break;
+            case ButtonType.PregameCreds:
+                canvasManager.SwitchCanvas(CanvasType.Pregame);
                 break;
             default:
                 break;
