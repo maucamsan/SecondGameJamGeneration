@@ -6,9 +6,10 @@ using UnityEditor;
 #endif
 using System.Linq;
 using UnityEngine.Rendering.Universal;
+using System;
 public class Controller2D : MonoBehaviour
 {
-    
+    public static Action OnFirstMovement;
     public float standardMovementSpeed = 5.0f;
     public float stealthMovementSpeed = 2.3f;
     public float DetectionRadius
@@ -25,7 +26,6 @@ public class Controller2D : MonoBehaviour
     float verticalInput;
     Light2D ownLight;
     Animator animator;
-    bool firstMovement;
     bool canMove = true;
     public bool CanMove
     {
@@ -45,7 +45,15 @@ public class Controller2D : MonoBehaviour
     void Update()
     {
         if (!canMove) return;
+       
+        CharacterInput();
 
+        
+        
+    }
+
+    void CharacterInput()
+    {
         float moveX = 0;
         float moveY = 0;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -77,7 +85,6 @@ public class Controller2D : MonoBehaviour
         {
             // Attack or harvest
         }
-        
     }
 
     void FixedUpdate()
@@ -85,7 +92,7 @@ public class Controller2D : MonoBehaviour
         rb2D.velocity = movement * movementSpeed;
     }
 
-    
+   
 
 
 #if UNITY_EDITOR

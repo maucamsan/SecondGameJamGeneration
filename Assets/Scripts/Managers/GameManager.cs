@@ -14,14 +14,46 @@ public class GameManager : Singleton<GameManager>
     // Restart game
     // Pause game
     // Exit to main    
-    
+    public static Action<int, FadeAnim> OnFirstMovement;
+    public static Action<int, FadeAnim> OnFirstShift;
     CanvasManager canvasManager;
     GameState currentGameState = GameState.Pregame;
+    bool firstMovement = true;
+    bool firstShift = true;
     void Start()
     {
         UpdateState(currentGameState);
     }
+    IEnumerator FirstMove()
+    {
+        while(true)
+        {
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                break;
+            }
+            yield return null;
+        }
+        firstMovement = false;
+        OnFirstMovement?.Invoke(0, FadeAnim.FadeOut);
+        yield return new WaitForSeconds(1f);
+        OnFirstMovement?.Invoke(1, FadeAnim.FadeIn);
+        StartCoroutine(FirstTutorialShift());
+    }
     
+    IEnumerator FirstTutorialShift()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                break;
+            }
+            yield return null;
+        }
+        firstShift = false;
+        OnFirstShift?.Invoke(1, FadeAnim.FadeOut);
+    }
     void UpdateState(GameState state)
     {
         switch(currentGameState)
@@ -46,6 +78,10 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.GamePlay:
                 UnPauseGame();
+                if (firstMovement)
+                {
+                    StartCoroutine(FirstMove());
+                }
                 // Set gameplay music
                 // Allow player and game mechanics
                 break;

@@ -14,6 +14,10 @@ public enum CanvasType
     PauseScreen,
     Options
 }
+public enum FadeAnim
+{
+    FadeOut, FadeIn
+}
 
 public class CanvasManager : Singleton<CanvasManager>
 {
@@ -28,8 +32,14 @@ public class CanvasManager : Singleton<CanvasManager>
         canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
         SwitchCanvas(CanvasType.Pregame);
+        GameManager.OnFirstMovement += Fade;
+        GameManager.OnFirstShift += Fade;
     }
-
+    void OnDisable()
+    {
+        GameManager.OnFirstMovement -= Fade;
+        GameManager.OnFirstShift -= Fade;
+    }
     public void SwitchCanvas(CanvasType type)
     {
         if (lastActiveCanvas != null)
@@ -46,9 +56,29 @@ public class CanvasManager : Singleton<CanvasManager>
             Debug.LogWarning("The main menu canvas was not found!");
     }
 
-    private void FadeOut(int index)
+    public void TryFadeOut()
+    {
+        Fade(0, FadeAnim.FadeOut);
+    }
+    public void TryFadeIn()
+    {
+        Fade(1, FadeAnim.FadeIn);
+    }
+    private void Fade(int index, FadeAnim setAnim)
     {
         animator = tutorial[index].GetComponent<Animator>();
-        animator.SetTrigger("FadeOut");
+        switch (setAnim)
+        {
+            case FadeAnim.FadeIn:
+                animator.SetTrigger("FadeIn");
+                break;
+            case FadeAnim.FadeOut:
+                animator.SetTrigger("FadeOut");
+                break;
+            default:
+                break;
+        }
     }
+
+    
 }
