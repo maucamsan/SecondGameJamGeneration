@@ -54,6 +54,19 @@ public class GameManager : Singleton<GameManager>
         }
         firstShift = false;
         OnFirstShift?.Invoke(1, FadeAnim.FadeOut);
+        StartCoroutine(SecondTutorialShift());
+    }
+    IEnumerator SecondTutorialShift()
+    {
+        while(true)
+        {
+            if (Input.GetKey(KeyCode.K))
+            {
+                break;
+            }
+            yield return null;
+        }
+        OnFirstMovement?.Invoke(2, FadeAnim.FadeOut);
     }
     void UpdateState(GameState state)
     {
@@ -179,6 +192,7 @@ public class GameManager : Singleton<GameManager>
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
         ResetGame();
+
         firstMovement = true;
         firstShift = true;
         StopAllCoroutines();

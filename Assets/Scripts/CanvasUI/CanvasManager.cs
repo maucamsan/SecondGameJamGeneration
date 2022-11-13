@@ -24,7 +24,7 @@ public class CanvasManager : Singleton<CanvasManager>
 {
     private List<CanvasController> canvasControllerList;
     CanvasController lastActiveCanvas;
-    [SerializeField] GameObject[] tutorial = new GameObject[2];
+    [SerializeField] GameObject[] tutorial = new GameObject[3];
     [SerializeField] Image wasdImage;
     Animator animator;
 

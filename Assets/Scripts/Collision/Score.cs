@@ -24,22 +24,27 @@ public class Score : MonoBehaviour
     }
     void Start()
     {
+        lootAmountDict.Add(TypeOfLoot.Food, 0);
+        lootAmountDict.Add(TypeOfLoot.HardWood, 0);
+        lootAmountDict.Add(TypeOfLoot.Stone, 0);
+        lootAmountDict.Add(TypeOfLoot.Vines, 0);
+
         foreach (TMP_Text lootText in lootItemsDisplayArray)
         {
             var setType = lootText.GetComponent<TypeOfLootSelector>().loot;
             lootRecordDict[setType] = lootText;
         }
     }
-        void Update()
-    {
-        TextMesh.text = points.ToString("0");
-    }
 
     public static void SumarPuntos(int pointsInput, TypeOfLoot loot)
     {
         // points += pointsInput;
-        lootAmountDict.Add(loot, lootAmountDict[loot] + pointsInput);
-        lootRecordDict[loot].text = points.ToString("0");
+        Debug.Log(pointsInput);
+        lootAmountDict[loot] +=  pointsInput;
+        lootRecordDict[loot].text = lootAmountDict[loot].ToString();
+        Debug.Log(lootRecordDict[loot].text);
+      
+        
 
     }
 }

@@ -84,7 +84,7 @@ public class Controller2D : MonoBehaviour
         }
         animator.SetFloat("MoveY", moveY);
         animator.SetFloat("MoveX", moveX);
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.K))
         {
             // Attack or harvest
             gatheringStick.gameObject.SetActive(true);

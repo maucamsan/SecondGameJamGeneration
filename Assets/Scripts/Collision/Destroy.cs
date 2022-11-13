@@ -14,10 +14,11 @@ public class Destroy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.CompareTag("ladder"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
             Score.SumarPuntos(cantidaPuntos, loot);
+            Debug.Log(cantidaPuntos);
+            Destroy(gameObject);
         }
     }
 }
