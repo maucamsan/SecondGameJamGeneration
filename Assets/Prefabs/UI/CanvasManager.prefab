@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 4518256201741229948}
   - component: {fileID: 1679271882340937595}
   - component: {fileID: 2486275504052448118}
+  - component: {fileID: 414452856557372755}
   m_Layer: 5
   m_Name: HardWood
   m_TagString: Untagged
@@ -232,6 +233,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &414452856557372755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181868785942839531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c958f61b26092d43b708fc1a8cd1bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot: 0
 --- !u!1 &183847553510573310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1181,7 @@ GameObject:
   - component: {fileID: 5854975557741551914}
   - component: {fileID: 276101649564249003}
   - component: {fileID: 1287166808503145092}
+  - component: {fileID: 472378769710628192}
   m_Layer: 5
   m_Name: Stone
   m_TagString: Untagged
@@ -1291,6 +1306,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &472378769710628192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369328592291893724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c958f61b26092d43b708fc1a8cd1bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot: 1
 --- !u!1 &2485953817433923252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2159,7 @@ GameObject:
   - component: {fileID: 9062398622274750166}
   - component: {fileID: 3473719793414041575}
   - component: {fileID: 210164780791270140}
+  - component: {fileID: 3173100502525559876}
   m_Layer: 5
   m_Name: Food
   m_TagString: Untagged
@@ -2255,6 +2284,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3173100502525559876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105508928053982707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c958f61b26092d43b708fc1a8cd1bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot: 2
 --- !u!1 &4295479274380371790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,6 +4068,7 @@ GameObject:
   - component: {fileID: 6920376541919544772}
   - component: {fileID: 6920376541919544773}
   - component: {fileID: 6920376541919544769}
+  - component: {fileID: 117266951878594612}
   m_Layer: 5
   m_Name: CanvasManager
   m_TagString: Untagged
@@ -4138,6 +4181,23 @@ MonoBehaviour:
   - {fileID: 4811206742733847497}
   - {fileID: 5550193817360793181}
   wasdImage: {fileID: 0}
+--- !u!114 &117266951878594612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920376541919544774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52396600ae7cfe8479ac13a7d0ae9ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootItemsDisplayArray:
+  - {fileID: 6978113619749672623}
+  - {fileID: 1287166808503145092}
+  - {fileID: 2486275504052448118}
+  - {fileID: 210164780791270140}
 --- !u!1 &6920376542164702402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5348,6 +5408,7 @@ GameObject:
   - component: {fileID: 5158622875123602709}
   - component: {fileID: 8669607827152446694}
   - component: {fileID: 6978113619749672623}
+  - component: {fileID: 1293245386939509260}
   m_Layer: 5
   m_Name: Vines
   m_TagString: Untagged
@@ -5472,6 +5533,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1293245386939509260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313714442794565758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c958f61b26092d43b708fc1a8cd1bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot: 3
 --- !u!1 &7340711578875409784
 GameObject:
   m_ObjectHideFlags: 0
