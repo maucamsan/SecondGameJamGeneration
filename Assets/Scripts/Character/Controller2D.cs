@@ -17,6 +17,7 @@ public class Controller2D : MonoBehaviour
         get {return detectionRadius;}
     }
     [SerializeField] float standardDetectionRadius = 2.0f;
+    [SerializeField] GameObject gatheringStick;
     private float detectionRadius;
     private float stealthDetectionRadius = 1.0f;
     float movementSpeed = 5.0f;
@@ -26,6 +27,7 @@ public class Controller2D : MonoBehaviour
     float verticalInput;
     Light2D ownLight;
     Animator animator;
+    Animator stickAnimator;
     bool canMove = true;
     public bool CanMove
     {
@@ -40,6 +42,7 @@ public class Controller2D : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         detectionRadius = standardDetectionRadius;
         animator = GetComponent<Animator>();
+        stickAnimator = gatheringStick.GetComponent<Animator>();
     }
 
     void Update()
@@ -81,9 +84,22 @@ public class Controller2D : MonoBehaviour
         }
         animator.SetFloat("MoveY", moveY);
         animator.SetFloat("MoveX", moveX);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             // Attack or harvest
+            gatheringStick.gameObject.SetActive(true);
+            if (moveX == 0 && moveY == 0)
+            {
+                stickAnimator.SetFloat("MoveY", -0.5f);
+                return;
+            }
+            stickAnimator.SetFloat("MoveY", moveY);
+            stickAnimator.SetFloat("MoveX", moveX);
+
+        }
+        else
+        {
+            gatheringStick.gameObject.SetActive(false);
         }
     }
 
