@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     // Exit to main    
     public static Action<int, FadeAnim> OnFirstMovement;
     public static Action<int, FadeAnim> OnFirstShift;
+    public static Action OnLevelReset;
     CanvasManager canvasManager;
     GameState currentGameState = GameState.Pregame;
     bool firstMovement = true;
@@ -56,6 +57,8 @@ public class GameManager : Singleton<GameManager>
     }
     void UpdateState(GameState state)
     {
+        Controller2D controller = FindObjectOfType<Controller2D>();
+        
         switch(currentGameState)
         {
             case GameState.Pregame:
@@ -75,9 +78,12 @@ public class GameManager : Singleton<GameManager>
                 StartGame();
                 UnPauseGame();
                 ResetGame();
+                
+
                 break;
             case GameState.GamePlay:
                 UnPauseGame();
+                controller.CanMove = true;
                 if (firstMovement)
                 {
                     StartCoroutine(FirstMove());
@@ -105,7 +111,6 @@ public class GameManager : Singleton<GameManager>
             case GameState.Restart:
                 UnloadLevel("Main");
                 
-                currentGameState = GameState.Pregame;
                 break;
 
 
@@ -133,6 +138,7 @@ public class GameManager : Singleton<GameManager>
         // Place player in initial position
         // Reset lootables
         // Reset enemies
+        OnLevelReset?.Invoke();
     }
     void PauseGame()
     {
@@ -167,10 +173,16 @@ public class GameManager : Singleton<GameManager>
 
     void OnLoadOperationComplete(AsyncOperation ao)
     {
-        Debug.Log("operation completed");
+        Controller2D controller = FindObjectOfType<Controller2D>();
+        controller.CanMove = false;
     }
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
+        ResetGame();
+        firstMovement = true;
+        firstShift = true;
+        StopAllCoroutines();
+        currentGameState = GameState.Pregame;
         Debug.Log("unloaded completed");
     }
 }

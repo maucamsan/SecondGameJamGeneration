@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public enum CanvasType
@@ -24,6 +25,7 @@ public class CanvasManager : Singleton<CanvasManager>
     private List<CanvasController> canvasControllerList;
     CanvasController lastActiveCanvas;
     [SerializeField] GameObject[] tutorial = new GameObject[2];
+    [SerializeField] Image wasdImage;
     Animator animator;
 
     protected override void Awake()
@@ -34,11 +36,13 @@ public class CanvasManager : Singleton<CanvasManager>
         SwitchCanvas(CanvasType.Pregame);
         GameManager.OnFirstMovement += Fade;
         GameManager.OnFirstShift += Fade;
+        GameManager.OnLevelReset += OnRestart;
     }
     void OnDisable()
     {
         GameManager.OnFirstMovement -= Fade;
         GameManager.OnFirstShift -= Fade;
+        GameManager.OnLevelReset -= OnRestart;
     }
     public void SwitchCanvas(CanvasType type)
     {
@@ -77,6 +81,17 @@ public class CanvasManager : Singleton<CanvasManager>
                 break;
             default:
                 break;
+        }
+    }
+    private void  OnRestart()
+    {
+        Debug.Log("restart");
+        tutorial[0].gameObject.SetActive(true);
+        for (int i = 0; i < tutorial.Length; i++)
+        {
+            tutorial[i].gameObject.SetActive(true);
+            wasdImage.color = new Color(1,1,1,1);
+
         }
     }
 

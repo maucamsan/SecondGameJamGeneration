@@ -51,11 +51,12 @@ public class ButtonController : MonoBehaviour
                 canvasManager.SwitchCanvas(CanvasType.Credits);
                 break;
             case ButtonType.Pause:
-                GameManager.GetInstance().CurrentGamestate = GameState.Paused;
+                Debug.Log("Pause");
                 canvasManager.SwitchCanvas(CanvasType.PauseScreen);
+                GameManager.GetInstance().CurrentGamestate = GameState.Paused;
                 break;
             case ButtonType.Restart:
-                GameManager.GetInstance().CurrentGamestate = GameState.Pregame;
+                GameManager.GetInstance().CurrentGamestate = GameState.Restart;
                 canvasManager.SwitchCanvas(CanvasType.Pregame);
                 break;
             case ButtonType.Resume:
