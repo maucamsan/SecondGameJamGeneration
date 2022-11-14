@@ -40,7 +40,7 @@ public class ButtonController : MonoBehaviour
                 canvasManager.SwitchCanvas(CanvasType.MainMenu);
                 break;
             case ButtonType.MainMenu:
-                Debug.Log("main menu activate");
+                canvasManager.ResetLife();
                 canvasManager.SwitchCanvas(CanvasType.MainMenu);
                 break;
             case ButtonType.StartGame:
