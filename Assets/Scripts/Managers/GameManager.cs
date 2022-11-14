@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     public static Action<int, FadeAnim> OnFirstMovement;
     public static Action<int, FadeAnim> OnFirstShift;
     public static Action OnLevelReset;
+    public static Action OnGameOver;
     CanvasManager canvasManager;
     GameState currentGameState = GameState.Pregame;
     bool firstMovement = true;
@@ -115,11 +116,14 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.GameOver:
                 //canvasManager.SwitchCanvas(CanvasType.EndScreen);
-                ResetGame();
-                PauseGame();
                 // Let restart
                 // Let send to main menu
-                canvasManager.SwitchCanvas(CanvasType.EndScreen);
+                //StopAllCoroutines();
+                // UnloadLevel("Main");
+                OnGameOver?.Invoke();
+                Controller2D c = FindObjectOfType<Controller2D>();
+                c.CanMove = false;
+                
                 break;
             case GameState.Restart:
                 UnloadLevel("Main");

@@ -270,6 +270,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1719548543, guid: 9bdb96a2d5e3b9644bc32734f2d5eb07, type: 3}
+      propertyPath: increaseHunger
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719548543, guid: 9bdb96a2d5e3b9644bc32734f2d5eb07, type: 3}
+      propertyPath: intervalToReduce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 279173323223702544, guid: 9bdb96a2d5e3b9644bc32734f2d5eb07, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

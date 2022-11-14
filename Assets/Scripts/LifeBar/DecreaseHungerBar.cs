@@ -14,7 +14,9 @@ public class DecreaseHungerBar : MonoBehaviour
         set{canDecreaseHunger = value;}
     }
     float hungerInterval;
-
+     GameManager gm;
+     CanvasManager canvasManager;
+     bool exit = false;
     void OnEnable()
     {
         canDecreaseHunger = true;
@@ -31,15 +33,28 @@ public class DecreaseHungerBar : MonoBehaviour
         StopCoroutine(Starve());
         canDecreaseHunger = false;
     }
+    void StopEverything()
+    {
+        canDecreaseHunger = false;
+        exit = true;
+    }
     void Start()
     {
         hunger = GetComponent<Hunger>();
         hunger.Curar(101);
         hungerInterval = intervalToReduce;
+        gm = GameManager.GetInstance();
+        canvasManager = CanvasManager.GetInstance();
     }
 
     void Update()
     {
+        if (hunger.vida <= 0) 
+        {
+            StopAllCoroutines();
+            GameManager.GetInstance().CurrentGamestate = GameState.GameOver;
+            canvasManager.SwitchCanvas(CanvasType.EndScreen);
+        }
         if (canDecreaseHunger)
         {
             canDecreaseHunger = false;
@@ -50,7 +65,7 @@ public class DecreaseHungerBar : MonoBehaviour
 
     IEnumerator Starve()
     {
-
+        
         while(hungerInterval >= 0)
         {
             hungerInterval -= Time.deltaTime;

@@ -33,12 +33,6 @@ public class Hunger : MonoBehaviour
     {
         vida -= daño;
         bar.CmabiarVidaActual(vida);
-        if(vida <= 0)
-        {
-            GameManager.GetInstance().CurrentGamestate = GameState.GameOver;
-            CanvasManager.GetInstance().SwitchCanvas(CanvasType.EndScreen);
-            //Destroy(gameObject);
-        }
     }
     
     public void Curar (float curacion)
