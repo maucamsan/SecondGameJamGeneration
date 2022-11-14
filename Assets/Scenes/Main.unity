@@ -3887,6 +3887,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 2227281511398746119, guid: 1d1ef47d313abe64ea17347f4dac7b3b, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227281511398746119, guid: 1d1ef47d313abe64ea17347f4dac7b3b, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227281511398746119, guid: 1d1ef47d313abe64ea17347f4dac7b3b, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6231431510177370309, guid: 1d1ef47d313abe64ea17347f4dac7b3b, type: 3}
       propertyPath: m_Name
       value: Enemy1
