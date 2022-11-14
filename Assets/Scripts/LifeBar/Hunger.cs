@@ -14,9 +14,11 @@ public class Hunger : MonoBehaviour
         // vida = 100;
         GameManager.OnLevelReset += ResetLife;
         LootObject.Destroy.OnFoodGrabbed += Curar;
+        Enemy2D.OnDamageInflicted += TomaeDaño;
     }
     void OnDisable()
     {
+        Enemy2D.OnDamageInflicted -= TomaeDaño;
         GameManager.OnLevelReset -= ResetLife;
         LootObject.Destroy.OnFoodGrabbed -= Curar;
     }
