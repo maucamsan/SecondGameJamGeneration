@@ -34,6 +34,11 @@ public class Controller2D : MonoBehaviour
         get{return canMove;}
         set {canMove = value;}
     }
+    bool canWin = false;
+    public bool CanWin
+    {
+        get{return canWin;}
+    }
 
     // Get animation reference
     void Awake()
@@ -43,6 +48,19 @@ public class Controller2D : MonoBehaviour
         detectionRadius = standardDetectionRadius;
         animator = GetComponent<Animator>();
         stickAnimator = gatheringStick.GetComponent<Animator>();
+    }
+    void OnEnable()
+    {
+        Score.OnLootCompleted += CanWinGame;
+    }
+    void OnDisable()
+    {
+        Score.OnLootCompleted -= CanWinGame;
+    }
+
+    void CanWinGame()
+    {
+        canWin = true;
     }
 
     void Update()
