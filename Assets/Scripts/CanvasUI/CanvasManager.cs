@@ -26,6 +26,7 @@ public class CanvasManager : Singleton<CanvasManager>
     CanvasController lastActiveCanvas;
     [SerializeField] GameObject[] tutorial = new GameObject[3];
     [SerializeField] Image wasdImage;
+    [SerializeField] Image kImage;
     Animator animator;
     Score score;
     [SerializeField] Hunger healthBarSlider;
@@ -91,12 +92,13 @@ public class CanvasManager : Singleton<CanvasManager>
     {
         Debug.Log("restart");
         tutorial[0].gameObject.SetActive(true);
-        for (int i = 0; i < tutorial.Length; i++)
-        {
-            tutorial[i].gameObject.SetActive(true);
-            wasdImage.color = new Color(1,1,1,1);
-
-        }
+        // for (int i = 0; i < tutorial.Length - 1; i++)
+        // {
+            
+        //}
+        tutorial[0].gameObject.SetActive(true);
+        wasdImage.color = new Color(1,1,1,1);
+        kImage.color = new Color(1,1,1,1);
         score.ResetValues();
     }
     public void ResetLife()
