@@ -17,14 +17,19 @@ public class DecreaseHungerBar : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.OnLevelReset += OnReset;
         canDecreaseHunger = true;
-        gameObject.GetComponent<Slider>().value = 101;
+        GameManager.OnLevelReset += StopDecreasing;
     }
     void OnDisable()
     {
-        GameManager.OnLevelReset -= OnReset;
         StopCoroutine(Starve());
+        GameManager.OnLevelReset -= StopDecreasing;
+
+    }
+    void StopDecreasing()
+    {
+        StopCoroutine(Starve());
+        canDecreaseHunger = false;
     }
     void Start()
     {
@@ -56,8 +61,5 @@ public class DecreaseHungerBar : MonoBehaviour
         yield return null;
     }
 
-    public void OnReset()
-    {
-        hunger.Curar(101);
-    }
+    
 }

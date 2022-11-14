@@ -57,6 +57,7 @@ public class ButtonController : MonoBehaviour
                 break;
             case ButtonType.Restart:
                 GameManager.GetInstance().CurrentGamestate = GameState.Restart;
+                canvasManager.ResetLife();
                 canvasManager.SwitchCanvas(CanvasType.Pregame);
                 break;
             case ButtonType.Resume:

@@ -47,4 +47,13 @@ public class Score : MonoBehaviour
         
 
     }
+    public void ResetValues()
+    {
+        for (int i = 0; i < lootAmountDict.Count; i++)
+        {
+            var setType = lootItemsDisplayArray[i].GetComponent<TypeOfLootSelector>().loot;
+            lootAmountDict[setType] = 0;
+            lootRecordDict[setType].text = "0";
+        }
+    }
 }

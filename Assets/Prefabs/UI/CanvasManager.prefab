@@ -4730,6 +4730,7 @@ MonoBehaviour:
   - {fileID: 5550193817360793181}
   - {fileID: 4318000117783657984}
   wasdImage: {fileID: 5849662148046898850}
+  healthBarSlider: {fileID: 6920376542615334792}
 --- !u!114 &117266951878594612
 MonoBehaviour:
   m_ObjectHideFlags: 0

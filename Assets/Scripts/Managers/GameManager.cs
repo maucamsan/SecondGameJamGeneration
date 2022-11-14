@@ -198,5 +198,7 @@ public class GameManager : Singleton<GameManager>
         StopAllCoroutines();
         currentGameState = GameState.Pregame;
         Debug.Log("unloaded completed");
+        // Notify life bar to replenish again
+        // Reset loot values
     }
 }

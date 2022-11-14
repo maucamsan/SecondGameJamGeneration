@@ -27,6 +27,8 @@ public class CanvasManager : Singleton<CanvasManager>
     [SerializeField] GameObject[] tutorial = new GameObject[3];
     [SerializeField] Image wasdImage;
     Animator animator;
+    Score score;
+    [SerializeField] Hunger healthBarSlider;
 
     protected override void Awake()
     {
@@ -37,7 +39,9 @@ public class CanvasManager : Singleton<CanvasManager>
         GameManager.OnFirstMovement += Fade;
         GameManager.OnFirstShift += Fade;
         GameManager.OnLevelReset += OnRestart;
+        score = GetComponent<Score>();
     }
+   
     void OnDisable()
     {
         GameManager.OnFirstMovement -= Fade;
@@ -93,6 +97,11 @@ public class CanvasManager : Singleton<CanvasManager>
             wasdImage.color = new Color(1,1,1,1);
 
         }
+        score.ResetValues();
+    }
+    public void ResetLife()
+    {
+        healthBarSlider.vida = 100;
     }
 
     
