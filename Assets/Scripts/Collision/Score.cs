@@ -10,11 +10,13 @@ public enum TypeOfLoot
 }
 public class Score : MonoBehaviour
 {
+    public static Action OnLootCompleted;
     private static Dictionary<TypeOfLoot, int> lootAmountDict = new Dictionary<TypeOfLoot, int>();
     [SerializeField] TMP_Text[] lootItemsDisplayArray;
     [SerializeField] static Dictionary<TypeOfLoot, TMP_Text> lootRecordDict = new Dictionary<TypeOfLoot, TMP_Text>();
+    [SerializeField] static int amountWinningCondition = 2;
     public static Score Instance { get; private set; }
-    private static int points;
+    private static int points = 0;
     private TextMeshProUGUI TextMesh;
 
     private void Awake()
@@ -41,9 +43,15 @@ public class Score : MonoBehaviour
         // points += pointsInput;
         Debug.Log(pointsInput);
         lootAmountDict[loot] +=  pointsInput;
-        lootRecordDict[loot].text = lootAmountDict[loot].ToString();
+        lootRecordDict[loot].text = lootAmountDict[loot].ToString() + " / 20";
         Debug.Log(lootRecordDict[loot].text);
-      
+        points += pointsInput;
+        if (points >= amountWinningCondition)
+        {
+            // notify something
+            Debug.Log("winningcondition");
+            OnLootCompleted?.Invoke();
+        }
         
 
     }
