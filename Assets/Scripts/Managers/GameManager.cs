@@ -192,11 +192,12 @@ public class GameManager : Singleton<GameManager>
     {
         Controller2D controller = FindObjectOfType<Controller2D>();
         controller.CanMove = false;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
     }
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
         ResetGame();
-
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Boot"));
         firstMovement = true;
         firstShift = true;
         StopAllCoroutines();
