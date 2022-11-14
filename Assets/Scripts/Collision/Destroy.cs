@@ -5,14 +5,20 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     [SerializeField] private GameObject eeffect;
-    [SerializeField] private float cantidaPuntos;
+    [SerializeField] private int cantidaPuntos;
+    TypeOfLoot loot;
+    void Start()
+    {
+        loot = GetComponent<TypeOfLootSelector>().loot;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.CompareTag("ladder"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
-            Score.SumarPuntos(cantidaPuntos);
+            Score.SumarPuntos(cantidaPuntos, loot);
+            Debug.Log(cantidaPuntos);
+            Destroy(gameObject);
         }
     }
 }

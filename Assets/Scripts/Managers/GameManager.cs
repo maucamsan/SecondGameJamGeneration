@@ -14,16 +14,65 @@ public class GameManager : Singleton<GameManager>
     // Restart game
     // Pause game
     // Exit to main    
-    
+    public static Action<int, FadeAnim> OnFirstMovement;
+    public static Action<int, FadeAnim> OnFirstShift;
+    public static Action OnLevelReset;
+    public static Action OnGameOver;
     CanvasManager canvasManager;
     GameState currentGameState = GameState.Pregame;
+    bool firstMovement = true;
+    bool firstShift = true;
     void Start()
     {
         UpdateState(currentGameState);
     }
+    IEnumerator FirstMove()
+    {
+        while(true)
+        {
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                break;
+            }
+            yield return null;
+        }
+        firstMovement = false;
+        OnFirstMovement?.Invoke(0, FadeAnim.FadeOut);
+        yield return new WaitForSeconds(1f);
+        OnFirstMovement?.Invoke(1, FadeAnim.FadeIn);
+        StartCoroutine(FirstTutorialShift());
+    }
     
+    IEnumerator FirstTutorialShift()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                break;
+            }
+            yield return null;
+        }
+        firstShift = false;
+        OnFirstShift?.Invoke(1, FadeAnim.FadeOut);
+        StartCoroutine(SecondTutorialShift());
+    }
+    IEnumerator SecondTutorialShift()
+    {
+        while(true)
+        {
+            if (Input.GetKey(KeyCode.K))
+            {
+                break;
+            }
+            yield return null;
+        }
+        OnFirstMovement?.Invoke(2, FadeAnim.FadeOut);
+    }
     void UpdateState(GameState state)
     {
+        Controller2D controller = FindObjectOfType<Controller2D>();
+        
         switch(currentGameState)
         {
             case GameState.Pregame:
@@ -43,9 +92,16 @@ public class GameManager : Singleton<GameManager>
                 StartGame();
                 UnPauseGame();
                 ResetGame();
+                
+
                 break;
             case GameState.GamePlay:
                 UnPauseGame();
+                controller.CanMove = true;
+                if (firstMovement)
+                {
+                    StartCoroutine(FirstMove());
+                }
                 // Set gameplay music
                 // Allow player and game mechanics
                 break;
@@ -60,16 +116,18 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.GameOver:
                 //canvasManager.SwitchCanvas(CanvasType.EndScreen);
-                ResetGame();
-                PauseGame();
                 // Let restart
                 // Let send to main menu
-                canvasManager.SwitchCanvas(CanvasType.EndScreen);
+                //StopAllCoroutines();
+                // UnloadLevel("Main");
+                OnGameOver?.Invoke();
+                Controller2D c = FindObjectOfType<Controller2D>();
+                c.CanMove = false;
+                
                 break;
             case GameState.Restart:
                 UnloadLevel("Main");
                 
-                currentGameState = GameState.Pregame;
                 break;
 
 
@@ -97,6 +155,7 @@ public class GameManager : Singleton<GameManager>
         // Place player in initial position
         // Reset lootables
         // Reset enemies
+        OnLevelReset?.Invoke();
     }
     void PauseGame()
     {
@@ -131,10 +190,20 @@ public class GameManager : Singleton<GameManager>
 
     void OnLoadOperationComplete(AsyncOperation ao)
     {
-        Debug.Log("operation completed");
+        Controller2D controller = FindObjectOfType<Controller2D>();
+        controller.CanMove = false;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
     }
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
+        ResetGame();
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Boot"));
+        firstMovement = true;
+        firstShift = true;
+        StopAllCoroutines();
+        currentGameState = GameState.Pregame;
         Debug.Log("unloaded completed");
+        // Notify life bar to replenish again
+        // Reset loot values
     }
 }

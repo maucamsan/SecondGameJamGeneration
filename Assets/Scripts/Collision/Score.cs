@@ -4,10 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum TypeOfLoot
+{
+    HardWood, Stone, Food, Vines
+}
 public class Score : MonoBehaviour
 {
+    private static Dictionary<TypeOfLoot, int> lootAmountDict = new Dictionary<TypeOfLoot, int>();
+    [SerializeField] TMP_Text[] lootItemsDisplayArray;
+    [SerializeField] static Dictionary<TypeOfLoot, TMP_Text> lootRecordDict = new Dictionary<TypeOfLoot, TMP_Text>();
     public static Score Instance { get; private set; }
-    private static float points;
+    private static int points;
     private TextMeshProUGUI TextMesh;
 
     private void Awake()
@@ -15,13 +22,38 @@ public class Score : MonoBehaviour
         Instance = this;
         TextMesh = GetComponent<TextMeshProUGUI>();
     }
-        void Update()
+    void Start()
     {
-        TextMesh.text = points.ToString("0");
+        lootAmountDict.Add(TypeOfLoot.Food, 0);
+        lootAmountDict.Add(TypeOfLoot.HardWood, 0);
+        lootAmountDict.Add(TypeOfLoot.Stone, 0);
+        lootAmountDict.Add(TypeOfLoot.Vines, 0);
+
+        foreach (TMP_Text lootText in lootItemsDisplayArray)
+        {
+            var setType = lootText.GetComponent<TypeOfLootSelector>().loot;
+            lootRecordDict[setType] = lootText;
+        }
     }
 
-    public static void SumarPuntos(float pointsInput)
+    public static void SumarPuntos(int pointsInput, TypeOfLoot loot)
     {
-        points += pointsInput;
+        // points += pointsInput;
+        Debug.Log(pointsInput);
+        lootAmountDict[loot] +=  pointsInput;
+        lootRecordDict[loot].text = lootAmountDict[loot].ToString();
+        Debug.Log(lootRecordDict[loot].text);
+      
+        
+
+    }
+    public void ResetValues()
+    {
+        for (int i = 0; i < lootAmountDict.Count; i++)
+        {
+            var setType = lootItemsDisplayArray[i].GetComponent<TypeOfLootSelector>().loot;
+            lootAmountDict[setType] = 0;
+            lootRecordDict[setType].text = "0";
+        }
     }
 }

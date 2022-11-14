@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public enum CanvasType
@@ -14,13 +15,21 @@ public enum CanvasType
     PauseScreen,
     Options
 }
+public enum FadeAnim
+{
+    FadeOut, FadeIn
+}
 
 public class CanvasManager : Singleton<CanvasManager>
 {
     private List<CanvasController> canvasControllerList;
     CanvasController lastActiveCanvas;
-    [SerializeField] GameObject[] tutorial = new GameObject[2];
+    [SerializeField] GameObject[] tutorial = new GameObject[3];
+    [SerializeField] Image wasdImage;
+    [SerializeField] Image kImage;
     Animator animator;
+    Score score;
+    [SerializeField] Hunger healthBarSlider;
 
     protected override void Awake()
     {
@@ -28,8 +37,18 @@ public class CanvasManager : Singleton<CanvasManager>
         canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
         SwitchCanvas(CanvasType.Pregame);
+        GameManager.OnFirstMovement += Fade;
+        GameManager.OnFirstShift += Fade;
+        GameManager.OnLevelReset += OnRestart;
+        score = GetComponent<Score>();
     }
-
+   
+    void OnDisable()
+    {
+        GameManager.OnFirstMovement -= Fade;
+        GameManager.OnFirstShift -= Fade;
+        GameManager.OnLevelReset -= OnRestart;
+    }
     public void SwitchCanvas(CanvasType type)
     {
         if (lastActiveCanvas != null)
@@ -46,9 +65,46 @@ public class CanvasManager : Singleton<CanvasManager>
             Debug.LogWarning("The main menu canvas was not found!");
     }
 
-    private void FadeOut(int index)
+    public void TryFadeOut()
+    {
+        Fade(0, FadeAnim.FadeOut);
+    }
+    public void TryFadeIn()
+    {
+        Fade(1, FadeAnim.FadeIn);
+    }
+    private void Fade(int index, FadeAnim setAnim)
     {
         animator = tutorial[index].GetComponent<Animator>();
-        animator.SetTrigger("FadeOut");
+        switch (setAnim)
+        {
+            case FadeAnim.FadeIn:
+                animator.SetTrigger("FadeIn");
+                break;
+            case FadeAnim.FadeOut:
+                animator.SetTrigger("FadeOut");
+                break;
+            default:
+                break;
+        }
     }
+    private void  OnRestart()
+    {
+        Debug.Log("restart");
+        tutorial[0].gameObject.SetActive(true);
+        // for (int i = 0; i < tutorial.Length - 1; i++)
+        // {
+            
+        //}
+        tutorial[0].gameObject.SetActive(true);
+        wasdImage.color = new Color(1,1,1,1);
+        kImage.color = new Color(1,1,1,1);
+        score.ResetValues();
+    }
+    public void ResetLife()
+    {
+        healthBarSlider.vida = 100;
+    }
+
+    
 }

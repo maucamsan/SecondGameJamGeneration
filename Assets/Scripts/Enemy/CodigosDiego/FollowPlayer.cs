@@ -34,7 +34,10 @@ public class FollowPlayer : StateMachineBehaviour
 
 
         }
-        if (enemy.distanceToPlayer - enemy.detectRadius <= enemy.playerRef.DetectionRadius && enemy.timeAttack <=0)
+        // Una vez me alcance, a una distancia pequeña, set trigger de ataque
+        // enemy.distanceToPlayer <= 1
+        //if (enemy.distanceToPlayer - enemy.detectRadius <= enemy.playerRef.DetectionRadius && enemy.timeAttack <=0)
+        if (enemy.distanceToPlayer <= 0.8f)
         {
             animator.SetTrigger("Attack");
 

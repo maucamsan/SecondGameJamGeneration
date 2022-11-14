@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Enemy2D : MonoBehaviour
 {
-    public float timeAttack;
+    public float timeAttackReference;
+    private float timeAttack;
 
     [SerializeField] 
     public Controller2D playerRef;
@@ -33,7 +34,7 @@ public class Enemy2D : MonoBehaviour
 
     private void Start()
     {
-        timeAttack = 3f;
+        timeAttack = timeAttackReference;
         ContLife = 3;
         animator = GetComponent<Animator>();
         puntoInicial = transform.position;
@@ -44,9 +45,12 @@ public class Enemy2D : MonoBehaviour
         timeAttack -= Time.deltaTime;
         distance = distanceToPlayer;
         distanceToPlayer = ((Vector2)transform.position - (Vector2)playerRef.transform.position).magnitude;
+        // Reemplazar por ontrigger enter si no funciona
        
-        
-        animator.SetFloat("Distancia", distanceToPlayer);
+        if (distanceToPlayer - detectRadius <= playerRef.DetectionRadius )
+            animator.SetTrigger("Follow");
+        else
+            animator.ResetTrigger("Follow");
         if (ContLife <= 0)
         {
             Morir();
@@ -67,7 +71,7 @@ public class Enemy2D : MonoBehaviour
     }
     public void Atacar ()
     {
-        timeAttack = 3;
+        timeAttack = timeAttackReference;
 
         //playerTransform.TakeDamage(5);
         Debug.Log("ATTACK!");
@@ -78,13 +82,19 @@ public class Enemy2D : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectRadius);
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    // }
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Player" && timeAttack <= 0)
+        Debug.Log("on trigger");
+        if (other.gameObject.CompareTag("tool")&& timeAttack <= 0  ) // 
         {
             ContLife = ContLife - 1;
             Atacar();
         }
+        
     }
     public void Morir()
     {

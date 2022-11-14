@@ -40,7 +40,7 @@ public class ButtonController : MonoBehaviour
                 canvasManager.SwitchCanvas(CanvasType.MainMenu);
                 break;
             case ButtonType.MainMenu:
-                Debug.Log("main menu activate");
+                canvasManager.ResetLife();
                 canvasManager.SwitchCanvas(CanvasType.MainMenu);
                 break;
             case ButtonType.StartGame:
@@ -51,11 +51,13 @@ public class ButtonController : MonoBehaviour
                 canvasManager.SwitchCanvas(CanvasType.Credits);
                 break;
             case ButtonType.Pause:
-                GameManager.GetInstance().CurrentGamestate = GameState.Paused;
+                Debug.Log("Pause");
                 canvasManager.SwitchCanvas(CanvasType.PauseScreen);
+                GameManager.GetInstance().CurrentGamestate = GameState.Paused;
                 break;
             case ButtonType.Restart:
-                GameManager.GetInstance().CurrentGamestate = GameState.Pregame;
+                GameManager.GetInstance().CurrentGamestate = GameState.Restart;
+                canvasManager.ResetLife();
                 canvasManager.SwitchCanvas(CanvasType.Pregame);
                 break;
             case ButtonType.Resume:

@@ -49,4 +49,4 @@ MonoBehaviour:
   - {fileID: 0}
   enemigos:
   - {fileID: 0}
-  tiempoEnemigos: 3
+  tiempoEnemigos: 18

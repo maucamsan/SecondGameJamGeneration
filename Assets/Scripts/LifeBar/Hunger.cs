@@ -5,11 +5,19 @@ using UnityEngine;
 public class Hunger : MonoBehaviour
 {
     
-    [SerializeField] private float vida; 
+    [SerializeField] public float vida; 
     [SerializeField] private float maximoVida;
     [SerializeField] private Bar bar;
     
-
+    void OnEnable()
+    {
+        // vida = 100;
+        GameManager.OnLevelReset += ResetLife;
+    }
+    void OnDisable()
+    {
+        GameManager.OnLevelReset -= ResetLife;
+    }
     private void Start()
     {
         vida = maximoVida;
@@ -25,10 +33,6 @@ public class Hunger : MonoBehaviour
     {
         vida -= daño;
         bar.CmabiarVidaActual(vida);
-        if(vida <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
     
     public void Curar (float curacion)
@@ -43,6 +47,10 @@ public class Hunger : MonoBehaviour
         }
     }
 
+    void ResetLife()
+    {
+        vida = 100;
+    }
 
 
 }
