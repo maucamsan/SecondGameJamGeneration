@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
     private static Dictionary<TypeOfLoot, int> lootAmountDict = new Dictionary<TypeOfLoot, int>();
     [SerializeField] TMP_Text[] lootItemsDisplayArray;
     [SerializeField] static Dictionary<TypeOfLoot, TMP_Text> lootRecordDict = new Dictionary<TypeOfLoot, TMP_Text>();
-    [SerializeField] static int amountWinningCondition = 160;
+    [SerializeField] static int amountWinningCondition = 89;
     public static Score Instance { get; private set; }
     private static int points = 0;
     private TextMeshProUGUI TextMesh;
