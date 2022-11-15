@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 6526661573433845370}
   - component: {fileID: 8961960540578898387}
   - component: {fileID: 6690762075358774529}
+  - component: {fileID: 7634370267666796735}
   m_Layer: 0
   m_Name: Stick
   m_TagString: tool
@@ -416,3 +417,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7634370267666796735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445424601798077045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10235c7ed63c16443bf2c1416a4c1c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: Attack

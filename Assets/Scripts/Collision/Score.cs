@@ -14,11 +14,11 @@ public class Score : MonoBehaviour
     private static Dictionary<TypeOfLoot, int> lootAmountDict = new Dictionary<TypeOfLoot, int>();
     [SerializeField] TMP_Text[] lootItemsDisplayArray;
     [SerializeField] static Dictionary<TypeOfLoot, TMP_Text> lootRecordDict = new Dictionary<TypeOfLoot, TMP_Text>();
-    [SerializeField] static int amountWinningCondition = 2;
+    [SerializeField] static int amountWinningCondition = 160;
     public static Score Instance { get; private set; }
     private static int points = 0;
     private TextMeshProUGUI TextMesh;
-
+    private static Dictionary<TypeOfLoot, string> outOfDictionaries = new Dictionary<TypeOfLoot, string>();
     private void Awake()
     {
         Instance = this;
@@ -35,15 +35,18 @@ public class Score : MonoBehaviour
         {
             var setType = lootText.GetComponent<TypeOfLootSelector>().loot;
             lootRecordDict[setType] = lootText;
+            outOfDictionaries[setType] = lootText.text;
+            lootText.text = "0" + outOfDictionaries[setType];
         }
     }
 
     public static void SumarPuntos(int pointsInput, TypeOfLoot loot)
     {
         // points += pointsInput;
+        
         Debug.Log(pointsInput);
         lootAmountDict[loot] +=  pointsInput;
-        lootRecordDict[loot].text = lootAmountDict[loot].ToString() + " / 20";
+        lootRecordDict[loot].text = lootAmountDict[loot].ToString() + outOfDictionaries[loot];
         Debug.Log(lootRecordDict[loot].text);
         points += pointsInput;
         if (points >= amountWinningCondition)

@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         UpdateState(currentGameState);
+        AudioManager.Instance.PlayMusic("BackgroundMusic");
     }
     IEnumerator FirstMove()
     {
