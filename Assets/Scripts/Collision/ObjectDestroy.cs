@@ -10,7 +10,9 @@ public class ObjectDestroy : MonoBehaviour
     {
         if (lifeObject < 0)
         {
-            Instantiate(obj);
+            var lootableObject = Instantiate(obj, transform.position, obj.transform.rotation);
+            lootableObject.GetComponent<SpriteRenderer>().sortingLayerName = GetComponentInChildren<SpriteRenderer>().sortingLayerName;
+            lootableObject.layer = LayerMask.NameToLayer(LayerMask.LayerToName(gameObject.layer));
             Destroy(gameObject);
         }
      
