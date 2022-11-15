@@ -44,15 +44,12 @@ public class Score : MonoBehaviour
     {
         // points += pointsInput;
         
-        Debug.Log(pointsInput);
         lootAmountDict[loot] +=  pointsInput;
         lootRecordDict[loot].text = lootAmountDict[loot].ToString() + outOfDictionaries[loot];
-        Debug.Log(lootRecordDict[loot].text);
         points += pointsInput;
         if (points >= amountWinningCondition)
         {
             // notify something
-            Debug.Log("winningcondition");
             OnLootCompleted?.Invoke();
         }
         

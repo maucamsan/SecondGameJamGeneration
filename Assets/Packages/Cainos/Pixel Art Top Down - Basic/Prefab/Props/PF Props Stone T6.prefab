@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7947911505737750450}
   - component: {fileID: 7947911505737750449}
   - component: {fileID: 2304626095932258325}
+  - component: {fileID: -5423105587723278039}
   m_Layer: 20
   m_Name: PF Props Stone T6
   m_TagString: Untagged
@@ -239,6 +240,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 3606220708086339602, guid: 5ab1ee13efcd02f45a1ec791cff2f320, type: 3}
   lifeObject: 10
+--- !u!61 &-5423105587723278039
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947911505737750455}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.421875}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.84375, y: 0.84375}
+    newSize: {x: 0.8125, y: 1.625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.84375, y: 0.84375}
+  m_EdgeRadius: 0
 --- !u!1 &7947911505844789836
 GameObject:
   m_ObjectHideFlags: 0

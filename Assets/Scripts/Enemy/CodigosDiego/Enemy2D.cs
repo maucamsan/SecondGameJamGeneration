@@ -76,7 +76,6 @@ public class Enemy2D : MonoBehaviour
 
         //playerTransform.TakeDamage(5);
         //InflictDamage();
-        Debug.Log("ATTACK!");
     }
 
     private void InflictDamage()
@@ -96,7 +95,6 @@ public class Enemy2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("on trigger");
         if (other.gameObject.CompareTag("tool")&& timeAttack <= 0  ) // 
         {
             ContLife = ContLife - 1;
