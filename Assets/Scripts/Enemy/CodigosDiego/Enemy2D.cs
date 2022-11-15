@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+using System;
 
 public class Enemy2D : MonoBehaviour
 {
+    public static Action<float> OnDamageInflicted;
     public float timeAttackReference;
     private float timeAttack;
 
@@ -47,7 +48,7 @@ public class Enemy2D : MonoBehaviour
         distanceToPlayer = ((Vector2)transform.position - (Vector2)playerRef.transform.position).magnitude;
         // Reemplazar por ontrigger enter si no funciona
        
-        if (distanceToPlayer - detectRadius <= playerRef.DetectionRadius )
+        if (distanceToPlayer -  detectRadius  <= playerRef.DetectionRadius)
             animator.SetTrigger("Follow");
         else
             animator.ResetTrigger("Follow");
@@ -74,7 +75,14 @@ public class Enemy2D : MonoBehaviour
         timeAttack = timeAttackReference;
 
         //playerTransform.TakeDamage(5);
+        //InflictDamage();
         Debug.Log("ATTACK!");
+    }
+
+    private void InflictDamage()
+    {
+        if (distanceToPlayer <= 1)
+            OnDamageInflicted?.Invoke(2);
     }
 
     void OnDrawGizmos()

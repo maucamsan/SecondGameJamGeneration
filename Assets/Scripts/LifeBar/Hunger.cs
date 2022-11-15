@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LootObject;
 public class Hunger : MonoBehaviour
 {
     
@@ -13,10 +13,14 @@ public class Hunger : MonoBehaviour
     {
         // vida = 100;
         GameManager.OnLevelReset += ResetLife;
+        LootObject.Destroy.OnFoodGrabbed += Curar;
+        Enemy2D.OnDamageInflicted += TomaeDaño;
     }
     void OnDisable()
     {
+        Enemy2D.OnDamageInflicted -= TomaeDaño;
         GameManager.OnLevelReset -= ResetLife;
+        LootObject.Destroy.OnFoodGrabbed -= Curar;
     }
     private void Start()
     {

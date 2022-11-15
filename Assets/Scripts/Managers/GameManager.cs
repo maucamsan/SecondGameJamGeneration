@@ -109,9 +109,9 @@ public class GameManager : Singleton<GameManager>
                 PauseGame();
                 break;
             case GameState.Victory:
-                ResetGame();
+                //ResetGame();
                 PauseGame();
-                canvasManager.SwitchCanvas(CanvasType.VictoryScreen);
+                //canvasManager.SwitchCanvas(CanvasType.VictoryScreen);
                 // send to main menu
                 break;
             case GameState.GameOver:
